@@ -48,14 +48,16 @@ export default class App extends Component<{}> {
 }
   render() {
     return (
+      <View style={{flex:1}}
       <View style={{flex:1}}>
           <StepIndicator
          customStyles={customStyles}
+         direction='vertical'
          currentPosition={this.state.currentPosition}
          labels={labels}
     />
     </View>
-
+</View>
     );
   }
   onPageChange(position){
