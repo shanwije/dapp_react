@@ -16,6 +16,7 @@ import {
 import StepIndicator from 'react-native-step-indicator';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
+import { Hoshi } from 'react-native-textinput-effects';
 
 const labels = ["Cart", "Delivery Address", "Order Summary", "Payment Method", "Track"];
 const customStyles = {
@@ -52,6 +53,16 @@ const saeInput = (
     autoCorrect={false}
   />
 );
+const hoshiInput = (
+  <Hoshi
+    label={'Town'}
+    // this is used as active border color
+    borderColor={'#b76c94'}
+    // this is used to set backgroundColor of label mask.
+    // please pass the backgroundColor of your TextInput container.
+    backgroundColor={'#F9F7F6'}
+  />
+);
 
 export default class App extends Component<{}> {
 
@@ -79,27 +90,32 @@ export default class App extends Component<{}> {
 
         <View style={{ flex:6}}>
 
-        <View style={{flex:1, flexDirection:'column', justifyContent:'space-between', alignContent:'center'}}>
+        <View style={{flex:1, flexDirection:'column', justifyContent:'space-between', alignContent:'center',}}>
 
           <Text style={styles.title}>the title</Text>
-          <Sae
-            label={'Email Address'}
-            iconClass={FontAwesomeIcon}
-            iconName={'pencil'}
-            iconColor={'white'}
-          />
-          <Text style={styles.title}>the title</Text>
-          <Sae
+          <Hoshi
             style={styles.input}
-            label={'Invitation Code'}
-            iconClass={FontAwesomeIcon}
+            label={'Street'}
+            maskColor={'#F9F7F6'}
+            borderColor={'#7ac1ba'}
           />
+
           <Text style={styles.title}>the title</Text>
-          <Sae
+          <Hoshi
             style={styles.input}
-            label={'Invitation Code'}
-            iconClass={FontAwesomeIcon}
+            label={'Street'}
+            maskColor={'#F9F7F6'}
+            borderColor={'#7ac1ba'}
           />
+
+          <Text style={styles.title}>the title</Text>
+          <Hoshi
+            style={styles.input}
+            label={'Street'}
+            maskColor={'#F9F7F6'}
+            borderColor={'#7ac1ba'}
+          />
+
 
         </View>
 
@@ -164,7 +180,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginTop: 4,
-    backgroundColor:'#aaaaaa'
+    //backgroundColor:'#aaaaaa'
   },
   title: {
     marginTop:10,
