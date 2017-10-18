@@ -14,22 +14,22 @@ import StepIndicator from 'react-native-step-indicator';
 
 const labels = ["Cart", "Delivery Address", "Order Summary", "Payment Method", "Track"];
 const customStyles = {
-  stepIndicatorSize: 25,
-  currentStepIndicatorSize: 30,
+  stepIndicatorSize: 35,
+  currentStepIndicatorSize: 40,
   separatorStrokeWidth: 2,
   currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: '#fe7013',
+  stepStrokeCurrentColor: '#aaaaaa',
   stepStrokeWidth: 3,
-  stepStrokeFinishedColor: '#fe7013',
+  stepStrokeFinishedColor: '#aaaaaa',
   stepStrokeUnFinishedColor: '#aaaaaa',
-  separatorFinishedColor: '#fe7013',
+  separatorFinishedColor: '#aaaaaa',
   separatorUnFinishedColor: '#aaaaaa',
-  stepIndicatorFinishedColor: '#fe7013',
+  stepIndicatorFinishedColor: '#aaaaaa',
   stepIndicatorUnFinishedColor: '#ffffff',
   stepIndicatorCurrentColor: '#ffffff',
   stepIndicatorLabelFontSize: 13,
   currentStepIndicatorLabelFontSize: 13,
-  stepIndicatorLabelCurrentColor: '#fe7013',
+  stepIndicatorLabelCurrentColor: '#aaaaaa',
   stepIndicatorLabelFinishedColor: '#ffffff',
   stepIndicatorLabelUnFinishedColor: '#aaaaaa',
   labelColor: '#999999',
@@ -47,16 +47,30 @@ export default class App extends Component<{}> {
   }
   render() {
     return (
-      <View style={{ flex: 1, flexDirection:'row' }}>
-        <View style={{ flex: 1 }}>
-          <StepIndicator
+      <View style={{flex:1, flexDirection:'column'}}>
+
+      <View style={{ flex: 2, flexDirection:'row'}}>
+        <View style={{ flex: 1, margin:10 }}>
+          <StepIndicator style={{flex: 1, flexDirection: 'row', alignContent:'center', justifyContent:'center' }}
             customStyles={customStyles}
             direction='vertical'
             currentPosition={this.state.currentPosition}
-            labels={labels}
+            stepCount= {3}
+            //labels={labels}
           />
         </View>
-        <View style={{backgroundColor:'#fe7013', flex:2}}></View>
+
+        <View style={{backgroundColor:'#fe7013', flex:6}}>
+        
+        </View>
+
+      </View>
+
+
+      <View style={{ flex: 1, flexDirection:'row' }}>
+        <Text>Hello World</Text>
+      </View>
+      
       </View>
     );
   }
