@@ -11,12 +11,17 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Alert
+  Alert,
+  KeyboardAvoidingView,
+  Input
 } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Sae } from 'react-native-textinput-effects';
 import { Hoshi } from 'react-native-textinput-effects';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const labels = ["Cart", "Delivery Address", "Order Summary", "Payment Method", "Track"];
 const customStyles = {
@@ -24,17 +29,17 @@ const customStyles = {
   currentStepIndicatorSize: 40,
   separatorStrokeWidth: 2,
   currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: '#aaaaaa',
+  stepStrokeCurrentColor: '#fec300',
   stepStrokeWidth: 3,
-  stepStrokeFinishedColor: '#aaaaaa',
+  stepStrokeFinishedColor: '#fec300',
   stepStrokeUnFinishedColor: '#aaaaaa',
-  separatorFinishedColor: '#aaaaaa',
+  separatorFinishedColor: '#fec300',
   separatorUnFinishedColor: '#aaaaaa',
-  stepIndicatorFinishedColor: '#aaaaaa',
+  stepIndicatorFinishedColor: '#fec300',
   stepIndicatorUnFinishedColor: '#ffffff',
   stepIndicatorCurrentColor: '#ffffff',
-  stepIndicatorLabelFontSize: 13,
-  currentStepIndicatorLabelFontSize: 13,
+  stepIndicatorLabelFontSize: 0,
+  currentStepIndicatorLabelFontSize: 0,
   stepIndicatorLabelCurrentColor: '#aaaaaa',
   stepIndicatorLabelFinishedColor: '#ffffff',
   stepIndicatorLabelUnFinishedColor: '#aaaaaa',
@@ -42,17 +47,7 @@ const customStyles = {
   labelSize: 13,
   currentStepLabelColor: '#fe7013'
 }
-const saeInput = (
-  <Sae
-    label={'Email Address'}
-    iconClass={FontAwesomeIcon}
-    iconName={'pencil'}
-    iconColor={'white'}
-    // TextInput props
-    autoCapitalize={'none'}
-    autoCorrect={false}
-  />
-);
+
 const hoshiInput = (
   <Hoshi
     label={'Town'}
@@ -74,7 +69,11 @@ export default class App extends Component<{}> {
   }
   render() {
     return (
-      <ScrollView style={{flex:1}}>
+      <KeyboardAwareScrollView
+      style={{ flex:1}}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      scrollEnabled={true}
+    >
       <View style={{flex:1, flexDirection:'column'}}>
 
       <View style={{ flex: 2, flexDirection:'row'}}>
@@ -90,30 +89,35 @@ export default class App extends Component<{}> {
 
         <View style={{ flex:6}}>
 
-        <View style={{flex:1, flexDirection:'column', justifyContent:'space-between', alignContent:'center',}}>
+        <View style={styles.inputDiv}>
+            <Text style={styles.title}>the title</Text>
+            <Icon style={styles.icon} name="pencil" size={30} color="#000" onPress={this._onPressButton}/>
 
-          <Text style={styles.title}>the title</Text>
+          
           <Hoshi
             style={styles.input}
             label={'Street'}
-            maskColor={'#F9F7F6'}
-            borderColor={'#7ac1ba'}
+            borderColor={'#fec300'}
+            ref={'zero'}
           />
 
           <Text style={styles.title}>the title</Text>
+          <Icon style={styles.icon} name="barcode" size={30} color="#000" onPress={this._onPressButton}/>
           <Hoshi
             style={styles.input}
             label={'Street'}
-            maskColor={'#F9F7F6'}
-            borderColor={'#7ac1ba'}
+            borderColor={'#fec300'}
+            autoFocus = {true}
+            ref={'one'}
           />
 
           <Text style={styles.title}>the title</Text>
+          <Icon style={styles.icon} name="camera" size={30} color="#000" onPress={this._onPressButton}/>
           <Hoshi
             style={styles.input}
             label={'Street'}
-            maskColor={'#F9F7F6'}
-            borderColor={'#7ac1ba'}
+            borderColor={'#fec300'}
+            ref={'two'}
           />
 
 
@@ -125,23 +129,31 @@ export default class App extends Component<{}> {
 
 
       <View style={{ flex: 1, marginTop:20, flexDirection:'row', justifyContent:'center', alignContent:'center' }}>
-      <TouchableOpacity onPress={this._onPressButton} style={{justifyContent:'center', alignContent:'center' }}>
+      <TouchableOpacity onPress={this._submit} style={{justifyContent:'center', alignContent:'center' }}>
           <View style={styles.button}>
-            <Text style={styles.buttonText}>TouchableOpacity</Text>
+            <Text style={styles.buttonText}>Change SIM</Text>
           </View>
         </TouchableOpacity>
       </View>
 
       </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     );
   }
   onPageChange(position) {
     this.setState({ currentPosition: position });
   }
   _onPressButton() {
-    Alert.alert('You tapped the button!')
+    Alert.alert('Sorry', 'This feature is still under construction');
   }
+  _submit(){
+    Alert.alert('You tapped the submit button!');
+  }
+  // getVisibleRows = (visibleRows) => {
+  //   const visibleRowNumbers = Object.keys(visibleRows.s1).map((row) => parseInt(row));
+  //   this.setState({currentPage:visibleRowNumbers[0]})
+  // }
+
 }
 
 // const styles = StyleSheet.create({
@@ -180,26 +192,45 @@ const styles = StyleSheet.create({
   },
   input: {
     marginTop: 4,
+    marginRight:5,
+    marginLeft:5
+
     //backgroundColor:'#aaaaaa'
   },
   title: {
-    marginTop:10,
+    marginTop:20,
     paddingBottom: 2,
-    textAlign: 'left',
     color: '#404d5b',
     fontSize: 20,
     fontWeight: 'bold',
     opacity: 0.8,
+    textAlign: 'left',
+    
   },
   button: {
     marginBottom: 30,
     width: 260,
     alignItems: 'center',
-    backgroundColor: '#2196F3'
+    backgroundColor: '#fec300'
   },
   buttonText: {
     padding: 20,
     color: 'white'
+  },
+  icon:{
+    textAlign: 'right',
+    flex:1,
+    marginRight:10,
+    marginTop:0,
+    alignItems:'flex-end'
+
+  },
+  inputDiv:{
+padding:10,
+flex:1,
+ flexDirection:'column',
+  justifyContent:'space-between', 
+alignContent:'center',
   }
 });
 
