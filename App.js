@@ -12,11 +12,10 @@ import {
 } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 
-const labels = ["Cart","Delivery Address","Order Summary","Payment Method","Track"];
+const labels = ["Cart", "Delivery Address", "Order Summary", "Payment Method", "Track"];
 const customStyles = {
-  orientation:	'vertical',
   stepIndicatorSize: 25,
-  currentStepIndicatorSize:30,
+  currentStepIndicatorSize: 30,
   separatorStrokeWidth: 2,
   currentStepStrokeWidth: 3,
   stepStrokeCurrentColor: '#fe7013',
@@ -43,26 +42,27 @@ export default class App extends Component<{}> {
   constructor() {
     super();
     this.state = {
-        currentPosition: 2
+      currentPosition: 2
     }
-}
+  }
   render() {
     return (
-      <View style={{flex:1}}
-      <View style={{flex:1}}>
+      <View style={{ flex: 1, flexDirection:'row' }}>
+        <View style={{ flex: 1 }}>
           <StepIndicator
-         customStyles={customStyles}
-         direction='vertical'
-         currentPosition={this.state.currentPosition}
-         labels={labels}
-    />
-    </View>
-</View>
+            customStyles={customStyles}
+            direction='vertical'
+            currentPosition={this.state.currentPosition}
+            labels={labels}
+          />
+        </View>
+        <View style={{backgroundColor:'#fe7013', flex:2}}></View>
+      </View>
     );
   }
-  onPageChange(position){
-    this.setState({currentPosition: position});
-}
+  onPageChange(position) {
+    this.setState({ currentPosition: position });
+  }
 }
 
 // const styles = StyleSheet.create({
