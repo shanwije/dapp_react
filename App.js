@@ -96,6 +96,7 @@ export default class App extends Component<{}> {
           <Hoshi
             style={styles.input}
             label={'Scan SIM No'}
+            labelStyle ={styles.inputLabelStyle}
             borderColor={'#fec300'}
             ref={'zero'}
           />
@@ -107,6 +108,7 @@ export default class App extends Component<{}> {
             borderColor={'#fec300'}
             autoFocus = {true}
             ref={'one'}
+            labelStyle ={styles.inputLabelStyle}
           />
 
           <Icon style={styles.icon} name="phone" size={20} color="#000" onPress={this._onPressButton}/>
@@ -115,6 +117,8 @@ export default class App extends Component<{}> {
             label={'Mobile No'}
             borderColor={'#fec300'}
             ref={'two'}
+            keyboardType={'phone-pad'}
+            labelStyle ={styles.inputLabelStyle}
           />
 
 
@@ -222,12 +226,16 @@ const styles = StyleSheet.create({
     paddingTop:30,
 
   },
+  inputLabelStyle:{
+  fontSize:17,
+  },
   inputDiv:{
-padding:10,
-flex:1,
- flexDirection:'column',
-  justifyContent:'space-between', 
-alignContent:'center',
+    paddingLeft:10,
+    paddingRight:10,
+    flex:1,
+    flexDirection:'column',
+    justifyContent:'space-between', 
+    alignContent:'center',
   }
 });
 
