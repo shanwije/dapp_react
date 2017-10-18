@@ -90,32 +90,29 @@ export default class App extends Component<{}> {
         <View style={{ flex:6}}>
 
         <View style={styles.inputDiv}>
-            <Text style={styles.title}>the title</Text>
-            <Icon style={styles.icon} name="pencil" size={30} color="#000" onPress={this._onPressButton}/>
+            <Icon style={styles.icon} name="barcode" size={20} color="#000" onPress={this._onPressButton}/>
 
           
           <Hoshi
             style={styles.input}
-            label={'Street'}
+            label={'Scan SIM No'}
             borderColor={'#fec300'}
             ref={'zero'}
           />
 
-          <Text style={styles.title}>the title</Text>
-          <Icon style={styles.icon} name="barcode" size={30} color="#000" onPress={this._onPressButton}/>
+          <Icon style={styles.icon} name="camera" size={20} color="#000" onPress={this._onPressButton}/>
           <Hoshi
             style={styles.input}
-            label={'Street'}
+            label={'NIC/Passport No'}
             borderColor={'#fec300'}
             autoFocus = {true}
             ref={'one'}
           />
 
-          <Text style={styles.title}>the title</Text>
-          <Icon style={styles.icon} name="camera" size={30} color="#000" onPress={this._onPressButton}/>
+          <Icon style={styles.icon} name="phone" size={20} color="#000" onPress={this._onPressButton}/>
           <Hoshi
             style={styles.input}
-            label={'Street'}
+            label={'Mobile No'}
             borderColor={'#fec300'}
             ref={'two'}
           />
@@ -193,7 +190,8 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 4,
     marginRight:5,
-    marginLeft:5
+    marginLeft:5,
+    padding:20
 
     //backgroundColor:'#aaaaaa'
   },
@@ -215,14 +213,13 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     padding: 20,
-    color: 'white'
+    color: 'white',
+    fontSize: 25
   },
   icon:{
-    textAlign: 'right',
-    flex:1,
-    marginRight:10,
-    marginTop:0,
-    alignItems:'flex-end'
+    textAlign:'right',
+    marginRight:20,
+    paddingTop:30,
 
   },
   inputDiv:{
