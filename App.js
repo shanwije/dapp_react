@@ -87,7 +87,7 @@ export default class App extends Component<{}> {
           />
         </View>
 
-        <View style={{ flex:6}}>
+        <View style={{ flex:8}}>
 
         <View style={styles.inputDiv}>
             <Icon style={styles.icon} name="barcode" size={20} color="#000" onPress={this._onPressButton}/>
@@ -130,7 +130,7 @@ export default class App extends Component<{}> {
 
 
       <View style={{ flex: 1, marginTop:20, flexDirection:'row', justifyContent:'center', alignContent:'center' }}>
-      <TouchableOpacity onPress={this._submit} style={{justifyContent:'center', alignContent:'center' }}>
+      <TouchableOpacity onPress={this._submit} style={{justifyContent:'center', alignContent:'center',   borderRadius: 50, height:80 }}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Change SIM</Text>
           </View>
@@ -185,17 +185,13 @@ const styles = StyleSheet.create({
     // not cool but good enough to make all inputs visible when keyboard is active
     // paddingBottom: 300,
   },
-  card1: {
-    paddingVertical: 16,
-  },
-  card2: {
-    padding: 16,
-  },
+
   input: {
-    marginTop: 4,
+    flex:1,
+    justifyContent:'center',
+    alignContent:'center',
     marginRight:5,
     marginLeft:5,
-    padding:20
 
     //backgroundColor:'#aaaaaa'
   },
@@ -210,32 +206,36 @@ const styles = StyleSheet.create({
     
   },
   button: {
+    flex:1,
+    justifyContent:'center',
     marginBottom: 30,
     width: 260,
     alignItems: 'center',
     backgroundColor: '#fec300'
   },
   buttonText: {
-    padding: 20,
     color: 'white',
-    fontSize: 25
+    fontSize: 20
   },
   icon:{
+    flex:1,
+    justifyContent:'center',
     textAlign:'right',
     marginRight:20,
-    paddingTop:30,
+    paddingTop:12,
 
   },
   inputLabelStyle:{
   fontSize:17,
+  color: '#000'
   },
   inputDiv:{
-    paddingLeft:10,
     paddingRight:10,
     flex:1,
     flexDirection:'column',
     justifyContent:'space-between', 
     alignContent:'center',
+    
   }
 });
 
