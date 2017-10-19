@@ -21,6 +21,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Hoshi } from 'react-native-textinput-effects';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+import { StackNavigator } from 'react-navigation';
 import { TabNavigator } from "react-navigation";
 
 
@@ -60,7 +62,14 @@ const hoshiInput = (
   />
 );
 
-export default class App extends Component<{}> {
+class SimChange extends Component<{}> {
+
+
+
+
+  static navigationOptions = {
+    title: 'Sim Change',
+  };
 
   constructor() {
     super();
@@ -79,6 +88,7 @@ export default class App extends Component<{}> {
     }
   }
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <KeyboardAwareScrollView
       style={{ flex:1}}
@@ -154,7 +164,7 @@ export default class App extends Component<{}> {
 
 
       <View style={{ flex: 1, marginTop:20, flexDirection:'row', justifyContent:'center', alignContent:'center' }}>
-        <TouchableOpacity onPress={this._submit} style={{justifyContent:'center', alignContent:'center',   borderRadius: 50, height:80 }}>
+        <TouchableOpacity onPress={() => navigate('Astatus')} style={{justifyContent:'center', alignContent:'center',   borderRadius: 50, height:80 }}>
             <View style={styles.button}>
               <Text style={styles.buttonText}>Change SIM</Text>
             </View>
@@ -227,24 +237,51 @@ export default class App extends Component<{}> {
 
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
+//-----------------------------------------------------------------
+class ActivationStatus extends Component<{}> {
+
+render(){
+  return(
+    <View>
+      <Text>Hello world</Text>
+    </View>
+  );
+}
+}
+
+class RecentChatsScreen extends React.Component {
+  render() {
+    return <Text>List of recent chats</Text>
+  }
+}
+
+class AllContactsScreen extends React.Component {
+  render() {
+    return <Text>List of all contacts</Text>
+  }
+}
+//-----------------------------------------------------------------
+export const MainScreenNavigator = TabNavigator({
+  REJECTED: { screen: RecentChatsScreen },
+  ALL: { screen: AllContactsScreen },
+});
+
+export const SimpleApp = StackNavigator({
+  Home: { screen: SimChange },
+  Astatus : { screen : MainScreenNavigator,
+    navigationOptions: {title: 'Activation Status',},
+  },
+});
+
+
+
+export default class App extends React.Component {
+  render() {
+    return <SimpleApp />;
+  }
+}
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
