@@ -69,6 +69,13 @@ export default class App extends Component<{}> {
       input1 : '',
       input2 : '',
       input3 : '',
+      input1_editable : true,
+      input2_editable : false,
+      input3_editable : false,
+
+      input1_autoFocus : true,
+      input2_autoFocus : false, 
+      input3_autoFocus : false,     
     }
   }
   render() {
@@ -103,6 +110,8 @@ export default class App extends Component<{}> {
                             ref={'zero'}
                             maxLength={20}
                             onChangeText={ (text) => this.onChangeText_inputOne(text) }
+                            editable = {this.state.input1_editable}
+                            autoFocus ={this.state.input1_autoFocus}
                           />
                           <Icon style={styles.icon} name="barcode" size={30} color="#000" onPress={this._onPressButton}/>
 
@@ -116,6 +125,8 @@ export default class App extends Component<{}> {
                         maxLength={20}
                         labelStyle ={styles.inputLabelStyle}
                         onChangeText={ (text) => this.onChangeText_inputTwo(text) }
+                        editable = {this.state.input2_editable}
+                        autoFocus ={this.state.input2_autoFocus}
                       />
                       <Icon style={styles.icon} name="camera" size={30} color="#000" onPress={this._onPressButton}/>
 
@@ -130,6 +141,8 @@ export default class App extends Component<{}> {
                       maxLength={20}
                       labelStyle ={styles.inputLabelStyle}
                       onChangeText={ (text) => this.onChangeText_inputThree(text) }
+                      editable = {this.state.input3_editable}
+                      autoFocus ={this.state.input3_autoFocus}
                     />
                    <Icon style={styles.icon} name="phone" size={30} color="#000" onPress={this._onPressButton}/>
                </View>
