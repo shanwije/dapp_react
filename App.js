@@ -78,58 +78,62 @@ export default class App extends Component<{}> {
       resetScrollToCoords={{ x: 0, y: 0 }}
       scrollEnabled={true}
     >
-      <View style={{flex:1, flexDirection:'column'}}>
+          <View style={{flex:1, flexDirection:'column'}}>
 
-      <View style={{ flex: 2, flexDirection:'row'}}>
-        <View style={{ flex: 1, marginLeft:10,}}>
-          <StepIndicator 
-            customStyles={customStyles}
-            direction='vertical'
-            currentPosition={this.state.currentPosition}
-            stepCount= {3}
-            //labels={labels}
-          />
-        </View>
+      <View style={{ flex: 3, flexDirection:'row'}}>
+              <View style={{ flex: 1, marginLeft:10,}}>
+                  <StepIndicator 
+                    customStyles={customStyles}
+                    direction='vertical'
+                    currentPosition={this.state.currentPosition}
+                    stepCount= {3}
+                    //labels={labels}
+                  />
+              </View>
 
         <View style={{ flex:9}}>
 
-        <View style={styles.inputDiv}>
-        <View style={{flex:3, flexDirection:'column'}}>
-          <Icon style={styles.icon} name="barcode" size={30} color="#000" onPress={this._onPressButton}/>
-          <Hoshi
-            style={styles.input}
-            label={'Scan SIM No'}
-            labelStyle ={styles.inputLabelStyle}
-            borderColor={'#fec300'}
-            ref={'zero'}
-            onChangeText={ (text) => this.onChangeText_inputOne(text) }
-          />
-          </View>
-          <View style={{flex:3, flexDirection:'column'}}>
-          <Icon style={styles.icon} name="camera" size={30} color="#000" onPress={this._onPressButton}/>
-          <Hoshi
-            style={styles.input}
-            label={'NIC/Passport No'}
-            borderColor={'#fec300'}
-            ref={'one'}
-            labelStyle ={styles.inputLabelStyle}
-            onChangeText={ (text) => this.onChangeText_inputTwo(text) }
-          />
-</View>
-<View style={{flex:3, flexDirection:'column'}}>
-          <Icon style={styles.icon} name="phone" size={30} color="#000" onPress={this._onPressButton}/>
-          <Hoshi
-            style={styles.input}
-            label={'Mobile No'}
-            borderColor={'#fec300'}
-            ref={'two'}
-            keyboardType={'phone-pad'}
-            labelStyle ={styles.inputLabelStyle}
-            onChangeText={ (text) => this.onChangeText_inputThree(text) }
-          />
+              <View style={styles.inputDiv}>
+                    <View style={{flex:3, flexDirection:'row', marginTop:36}}>
+                        <Hoshi
+                            style={styles.input}
+                            label={'Scan SIM No'}
+                            labelStyle ={styles.inputLabelStyle}
+                            borderColor={'#fec300'}
+                            ref={'zero'}
+                            maxLength={20}
+                            onChangeText={ (text) => this.onChangeText_inputOne(text) }
+                          />
+                          <Icon style={styles.icon} name="barcode" size={30} color="#000" onPress={this._onPressButton}/>
 
-</View>
-        </View>
+                      </View>
+                  <View style={{flex:3, flexDirection:'row', marginTop:36}}>
+                      <Hoshi
+                        style={styles.input}
+                        label={'NIC/Passport No'}
+                        borderColor={'#fec300'}
+                        ref={'one'}
+                        maxLength={20}
+                        labelStyle ={styles.inputLabelStyle}
+                        onChangeText={ (text) => this.onChangeText_inputTwo(text) }
+                      />
+                      <Icon style={styles.icon} name="camera" size={30} color="#000" onPress={this._onPressButton}/>
+
+                 </View>
+                <View style={{flex:3, flexDirection:'row',marginTop:36}}>
+                    <Hoshi
+                      style={styles.input}
+                      label={'Mobile No'}
+                      borderColor={'#fec300'}
+                      ref={'two'}
+                      keyboardType={'phone-pad'}
+                      maxLength={20}
+                      labelStyle ={styles.inputLabelStyle}
+                      onChangeText={ (text) => this.onChangeText_inputThree(text) }
+                    />
+                   <Icon style={styles.icon} name="phone" size={30} color="#000" onPress={this._onPressButton}/>
+               </View>
+            </View>
 
         </View>
 
@@ -137,11 +141,11 @@ export default class App extends Component<{}> {
 
 
       <View style={{ flex: 1, marginTop:20, flexDirection:'row', justifyContent:'center', alignContent:'center' }}>
-      <TouchableOpacity onPress={this._submit} style={{justifyContent:'center', alignContent:'center',   borderRadius: 50, height:80 }}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Change SIM</Text>
-          </View>
-        </TouchableOpacity>
+        <TouchableOpacity onPress={this._submit} style={{justifyContent:'center', alignContent:'center',   borderRadius: 50, height:80 }}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Change SIM</Text>
+            </View>
+          </TouchableOpacity>
       </View>
 
       </View>
@@ -236,7 +240,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    flex:1,
+    flex:8,
     justifyContent:'center',
     alignContent:'center',
     marginRight:5,
@@ -268,7 +272,8 @@ const styles = StyleSheet.create({
   },
   icon:{
     flex:1,
-    justifyContent:'center',
+    justifyContent:'flex-start',
+    alignContent:'flex-end',
     textAlign:'right',
     marginRight:20,
     paddingTop:12,
@@ -279,7 +284,7 @@ const styles = StyleSheet.create({
   color: '#000'
   },
   inputDiv:{
-    paddingRight:10,
+    paddingRight:2,
     flex:1,
     flexDirection:'column',
     justifyContent:'space-between', 
