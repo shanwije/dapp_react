@@ -178,9 +178,11 @@ export default class App extends Component<{}> {
     this.state.input1 = text;
     if(this.state.input1.length > 5){
       this.onPageChange(1);
+      this.state.input2_editable = true;
     
       if(this.state.input2.length > 5){
         this.onPageChange(2);
+        this.state.input3_editable = true;
       
       if(this.state.input3.length > 5){
         this.onPageChange(3);
@@ -192,10 +194,12 @@ export default class App extends Component<{}> {
     this.state.input2 = text;
     if(this.state.input1.length > 5){
       this.onPageChange(1);
+      this.state.input1_editable = true;
+      this.state.input3_editable = true;
     
       if(this.state.input2.length > 5){
         this.onPageChange(2);
-      
+        this.state.input3_editable = true;
       if(this.state.input3.length > 5){
         this.onPageChange(3);
       }
