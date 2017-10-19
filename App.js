@@ -69,73 +69,15 @@ export default class App extends Component<{}> {
   }
   render() {
     return (
+      
       <KeyboardAwareScrollView
       style={{ flex:1}}
       resetScrollToCoords={{ x: 0, y: 0 }}
       scrollEnabled={true}
     >
       <View style={{flex:1, flexDirection:'column'}}>
-
-      <View style={{ flex: 2, flexDirection:'row'}}>
-        <View style={{ flex: 1, marginLeft:10}}>
-          <StepIndicator 
-            customStyles={customStyles}
-            direction='vertical'
-            currentPosition={this.state.currentPosition}
-            stepCount= {3}
-            //labels={labels}
-          />
-        </View>
-
-        <View style={{ flex:6}}>
-
-        <View style={styles.inputDiv}>
-            <Icon style={styles.icon} name="barcode" size={20} color="#000" onPress={this._onPressButton}/>
-
-          
-          <Hoshi
-            style={styles.input}
-            label={'Scan SIM No'}
-            labelStyle ={styles.inputLabelStyle}
-            borderColor={'#fec300'}
-            ref={'zero'}
-          />
-
-          <Icon style={styles.icon} name="camera" size={20} color="#000" onPress={this._onPressButton}/>
-          <Hoshi
-            style={styles.input}
-            label={'NIC/Passport No'}
-            borderColor={'#fec300'}
-            autoFocus = {true}
-            ref={'one'}
-            labelStyle ={styles.inputLabelStyle}
-          />
-
-          <Icon style={styles.icon} name="phone" size={20} color="#000" onPress={this._onPressButton}/>
-          <Hoshi
-            style={styles.input}
-            label={'Mobile No'}
-            borderColor={'#fec300'}
-            ref={'two'}
-            keyboardType={'phone-pad'}
-            labelStyle ={styles.inputLabelStyle}
-          />
-
-
-        </View>
-
-        </View>
-
-      </View>
-
-
-      <View style={{ flex: 1, marginTop:20, flexDirection:'row', justifyContent:'center', alignContent:'center' }}>
-      <TouchableOpacity onPress={this._submit} style={{justifyContent:'center', alignContent:'center' }}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Change SIM</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <Text>Heloo wdsdsf</Text>
+  
 
       </View>
       </KeyboardAwareScrollView>
