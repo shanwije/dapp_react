@@ -21,13 +21,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Hoshi } from 'react-native-textinput-effects';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { TabNavigator } from "react-navigation";
 
 
 const labels = ["Cart", "Delivery Address", "Order Summary", "Payment Method", "Track"];
 const customStyles = {
-  stepIndicatorSize: 35,
-  currentStepIndicatorSize: 40,
-  separatorStrokeWidth: 2,
+  stepIndicatorSize: 32,
+  currentStepIndicatorSize: 32,
+  separatorStrokeWidth: 5,
   currentStepStrokeWidth: 3,
   stepStrokeCurrentColor: '#fec300',
   stepStrokeWidth: 3,
@@ -38,11 +39,11 @@ const customStyles = {
   stepIndicatorFinishedColor: '#fec300',
   stepIndicatorUnFinishedColor: '#ffffff',
   stepIndicatorCurrentColor: '#ffffff',
-  stepIndicatorLabelFontSize: 0,
-  currentStepIndicatorLabelFontSize: 0,
-  stepIndicatorLabelCurrentColor: '#aaaaaa',
+  stepIndicatorLabelFontSize: 10,
+  currentStepIndicatorLabelFontSize: 10,
+  stepIndicatorLabelCurrentColor: '#ffffff',
   stepIndicatorLabelFinishedColor: '#ffffff',
-  stepIndicatorLabelUnFinishedColor: '#aaaaaa',
+  stepIndicatorLabelUnFinishedColor: '#ffffff',
   labelColor: '#999999',
   labelSize: 13,
   currentStepLabelColor: '#fe7013'
@@ -64,7 +65,10 @@ export default class App extends Component<{}> {
   constructor() {
     super();
     this.state = {
-      currentPosition: 2
+      currentPosition: 0,
+      input1 : '',
+      input2 : '',
+      input3 : '',
     }
   }
   render() {
@@ -77,7 +81,7 @@ export default class App extends Component<{}> {
       <View style={{flex:1, flexDirection:'column'}}>
 
       <View style={{ flex: 2, flexDirection:'row'}}>
-        <View style={{ flex: 1, marginLeft:10}}>
+        <View style={{ flex: 1, marginLeft:10,}}>
           <StepIndicator 
             customStyles={customStyles}
             direction='vertical'
@@ -87,31 +91,33 @@ export default class App extends Component<{}> {
           />
         </View>
 
-        <View style={{ flex:8}}>
+        <View style={{ flex:9}}>
 
         <View style={styles.inputDiv}>
-            <Icon style={styles.icon} name="barcode" size={20} color="#000" onPress={this._onPressButton}/>
-
-          
+        <View style={{flex:3, flexDirection:'column'}}>
+          <Icon style={styles.icon} name="barcode" size={30} color="#000" onPress={this._onPressButton}/>
           <Hoshi
             style={styles.input}
             label={'Scan SIM No'}
             labelStyle ={styles.inputLabelStyle}
             borderColor={'#fec300'}
             ref={'zero'}
+            onChangeText={ (text) => this.onChangeText_inputOne(text) }
           />
-
-          <Icon style={styles.icon} name="camera" size={20} color="#000" onPress={this._onPressButton}/>
+          </View>
+          <View style={{flex:3, flexDirection:'column'}}>
+          <Icon style={styles.icon} name="camera" size={30} color="#000" onPress={this._onPressButton}/>
           <Hoshi
             style={styles.input}
             label={'NIC/Passport No'}
             borderColor={'#fec300'}
-            autoFocus = {true}
             ref={'one'}
             labelStyle ={styles.inputLabelStyle}
+            onChangeText={ (text) => this.onChangeText_inputTwo(text) }
           />
-
-          <Icon style={styles.icon} name="phone" size={20} color="#000" onPress={this._onPressButton}/>
+</View>
+<View style={{flex:3, flexDirection:'column'}}>
+          <Icon style={styles.icon} name="phone" size={30} color="#000" onPress={this._onPressButton}/>
           <Hoshi
             style={styles.input}
             label={'Mobile No'}
@@ -119,9 +125,10 @@ export default class App extends Component<{}> {
             ref={'two'}
             keyboardType={'phone-pad'}
             labelStyle ={styles.inputLabelStyle}
+            onChangeText={ (text) => this.onChangeText_inputThree(text) }
           />
 
-
+</View>
         </View>
 
         </View>
@@ -149,6 +156,48 @@ export default class App extends Component<{}> {
   }
   _submit(){
     Alert.alert('You tapped the submit button!');
+  }
+  onChangeText_inputOne(text){
+    this.state.input1 = text;
+    if(this.state.input1.length > 5){
+      this.onPageChange(1);
+    
+      if(this.state.input2.length > 5){
+        this.onPageChange(2);
+      
+      if(this.state.input3.length > 5){
+        this.onPageChange(3);
+      }
+    }
+  }
+  }
+  onChangeText_inputTwo(text){
+    this.state.input2 = text;
+    if(this.state.input1.length > 5){
+      this.onPageChange(1);
+    
+      if(this.state.input2.length > 5){
+        this.onPageChange(2);
+      
+      if(this.state.input3.length > 5){
+        this.onPageChange(3);
+      }
+    }
+  }
+  }
+  onChangeText_inputThree(text){
+    this.state.input3 = text;
+    if(this.state.input1.length > 5){
+      this.onPageChange(1);
+    
+      if(this.state.input2.length > 5){
+        this.onPageChange(2);
+      
+      if(this.state.input3.length > 5){
+        this.onPageChange(3);
+      }
+    }
+  }
   }
   // getVisibleRows = (visibleRows) => {
   //   const visibleRowNumbers = Object.keys(visibleRows.s1).map((row) => parseInt(row));
