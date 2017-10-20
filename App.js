@@ -16,6 +16,7 @@ import {
   Input,
   List, 
   FlatList,
+  StatusBar,
 } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -23,6 +24,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Hoshi } from 'react-native-textinput-effects';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 import { StackNavigator } from 'react-navigation';
 import { TabNavigator } from "react-navigation";
@@ -59,10 +61,12 @@ const customStyles = {
   labelSize: 13,
   currentStepLabelColor: '#fe7013'
 }
-const closeIcon = (<Icon name="ios-close-circle" size={20} color="red" style ={{textAlign:'center', marginLeft:10}} />);
-const checkIcon = (<Icon name="ios-checkmark-circle" size={20} color="green" style ={{textAlign:'center', marginLeft:10}} />);
-const refreshIcon = (<Icon name="ios-refresh-circle" size={20} color="yellow" style ={{textAlign:'center', marginLeft:10}} />);
-const forwardIcon = (<Icon name="ios-arrow-forward" size={20} color="black" style ={{textAlign:'center', marginLeft:10}} />);
+
+const bc = '#fe7013';
+const closeIcon = (<Icon name="ios-close-circle" size={25} color="red" style ={{textAlign:'center', marginLeft:10}} />);
+const checkIcon = (<Icon name="ios-checkmark-circle" size={25} color="green" style ={{textAlign:'center', marginLeft:10}} />);
+const refreshIcon = (<Icon name="ios-refresh-circle" size={25} color="yellow" style ={{textAlign:'center', marginLeft:10}} />);
+const forwardIcon = (<Icon name="ios-arrow-forward" size={25} color="black" style ={{textAlign:'center', marginLeft:10}} />);
 
 const nf = 'NIC BACK';
 const nb = 'NIC FRONT';
@@ -185,6 +189,8 @@ const hoshiInput = (
   />
 );
 
+//-----------------------------------------------------------------------------------
+
 class SimChange extends Component<{}> {
 
 
@@ -218,6 +224,9 @@ class SimChange extends Component<{}> {
       resetScrollToCoords={{ x: 0, y: 0 }}
       scrollEnabled={true}
     >
+    <View>
+
+ </View>
           <View style={{flex:1, flexDirection:'column'}}>
 
       <View style={{ flex: 3, flexDirection:'row'}}>
@@ -409,9 +418,11 @@ class RejectedScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
+      <ScrollView>
 <View style={styles.listView_wholePage}>
         {this.renderRow()}
         </View>
+        </ScrollView>
     )
   }
   _onPressMore() {
@@ -453,10 +464,11 @@ class AllScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
+      <ScrollView>
       <View style={styles.listView_wholePage}>
       {this.renderRow()}
       </View>
-       
+      </ScrollView>
     )
   }
   _onPressMore() {
@@ -475,7 +487,10 @@ const MainScreenNavigator = TabNavigator({
 
 
 export const SimpleApp = StackNavigator({
-  Home: { screen: SimChange },
+  Home: { screen: SimChange,
+    cardStyle: {backgroundColor: '#111'}
+  
+  },
   Astatus : { screen : MainScreenNavigator,
   navigationOptions: {title: 'Activation Status',},
 },
@@ -483,9 +498,18 @@ export const SimpleApp = StackNavigator({
 
 
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
-    return <SimpleApp />;
+  return( 
+  <View style={{flex:1}}>
+     <StatusBar
+     backgroundColor='#fec300'
+     barStyle="dark-content"
+
+   />
+   <SimpleApp />
+  </View>
+ );
   }
 }
 
@@ -558,15 +582,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   listVView_row: {
-    flex:50,
     flexDirection: 'row',
-    maxHeight: 70,
+    height: 70,
     borderWidth: 0.5,
     borderColor: '#d6d7da',
     backgroundColor: '#fff',
   },
   listView_col1: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
