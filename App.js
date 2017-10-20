@@ -13,17 +13,26 @@ import {
   TouchableOpacity,
   Alert,
   KeyboardAvoidingView,
-  Input
+  Input,
+  List, 
+  FlatList,
 } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Hoshi } from 'react-native-textinput-effects';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { StackNavigator } from 'react-navigation';
 import { TabNavigator } from "react-navigation";
+import iconFont from 'react-native-vector-icons/Fonts/FontAwesome.ttf';
+
+const iconFontStyles = `@font-face {
+  src: url(${iconFont});
+  font-family: FontAwesome;
+}`;
+
 
 
 const labels = ["Cart", "Delivery Address", "Order Summary", "Payment Method", "Track"];
@@ -50,7 +59,121 @@ const customStyles = {
   labelSize: 13,
   currentStepLabelColor: '#fe7013'
 }
+const closeIcon = (<Icon name="ios-close-circle" size={20} color="red" style ={{textAlign:'center', marginLeft:10}} />);
+const checkIcon = (<Icon name="ios-checkmark-circle" size={20} color="green" style ={{textAlign:'center', marginLeft:10}} />);
+const refreshIcon = (<Icon name="ios-refresh-circle" size={20} color="yellow" style ={{textAlign:'center', marginLeft:10}} />);
+const forwardIcon = (<Icon name="ios-arrow-forward" size={20} color="black" style ={{textAlign:'center', marginLeft:10}} />);
 
+const nf = 'NIC BACK';
+const nb = 'NIC FRONT';
+
+const t1 = '09:23 AM';
+const t2 = '11:53 AM';
+const t3 = '10:24 AM';
+
+const rejList = [
+  {
+    icon: closeIcon,
+    num: '0771234567',
+    issue: nf,
+    date: '22/09/2017',
+    time: t1
+  },
+  {
+    icon: closeIcon,
+    num: '0771234534',
+    issue: nb,
+    date: '25/09/2017',
+    time: t2
+  },
+  {
+    icon: closeIcon,
+    num: '0771354567',
+    issue: nf,
+    date: '02/09/2017',
+    time: t3
+  },
+
+];
+
+const allList = [
+  {
+    icon: checkIcon,
+    num: '0771234567',
+    issue: nf,
+    date: '22/09/2017',
+    time: t3
+  },
+  {
+    icon: closeIcon,
+    num: '0771234567',
+    issue: nb,
+    date: '22/09/2017',
+    time: t1
+  },
+  {
+    icon: checkIcon,
+    num: '0771234567',
+    issue: nf,
+    date: '22/09/2017',
+    time: t2
+  },
+  {
+    icon: refreshIcon,
+    num: '0771234567',
+    issue: nf,
+    date: '22/09/2017',
+    time: t1
+  },
+  {
+    icon: checkIcon,
+    num: '0771234534',
+    issue: nb,
+    date: '25/09/2017',
+    time: t2
+  },
+  {
+    icon: checkIcon,
+    num: '0771354567',
+    issue: nf,
+    date: '02/09/2017',
+    time: t1
+  },{
+  icon: closeIcon,
+  num: '0771234567',
+  issue: nb,
+  date: '22/09/2017',
+  time: t1
+},
+  {
+    icon: checkIcon,
+    num: '0771354567',
+    issue: nf,
+    date: '02/09/2017',
+    time: t2
+  },
+  {
+    icon: refreshIcon,
+    num: '0771354567',
+    issue: nb,
+    date: '02/09/2017',
+    time: t3
+  },
+  {
+    icon: checkIcon,
+    num: '0771354567',
+    issue: nf,
+    date: '02/09/2017',
+    time: t1
+  },{
+  icon: closeIcon,
+  num: '0771234567',
+  issue: nb,
+  date: '22/09/2017',
+  time: t1
+},
+
+];
 const hoshiInput = (
   <Hoshi
     label={'Town'}
@@ -123,7 +246,7 @@ class SimChange extends Component<{}> {
                             editable = {this.state.input1_editable}
                             autoFocus ={this.state.input1_autoFocus}
                           />
-                          <Icon style={styles.icon} name="barcode" size={30} color="#000" onPress={this._onPressButton}/>
+                          <Icon style={styles.icon} name="ios-barcode" size={30} color="#000" onPress={this._onPressButton} />
 
                       </View>
                   <View style={{flex:3, flexDirection:'row', marginTop:36}}>
@@ -138,7 +261,7 @@ class SimChange extends Component<{}> {
                         editable = {this.state.input2_editable}
                         autoFocus ={this.state.input2_autoFocus}
                       />
-                      <Icon style={styles.icon} name="camera" size={30} color="#000" onPress={this._onPressButton}/>
+                      <Icon style={styles.icon} name="ios-camera" size={30} color="#000" onPress={this._onPressButton}/>
 
                  </View>
                 <View style={{flex:3, flexDirection:'row',marginTop:36}}>
@@ -154,7 +277,7 @@ class SimChange extends Component<{}> {
                       editable = {this.state.input3_editable}
                       autoFocus ={this.state.input3_autoFocus}
                     />
-                   <Icon style={styles.icon} name="phone" size={30} color="#000" onPress={this._onPressButton}/>
+                   <Icon style={styles.icon} name="ios-phone-portrait" size={30} color="#000" onPress={this._onPressButton}/>
                </View>
             </View>
 
@@ -238,39 +361,124 @@ class SimChange extends Component<{}> {
 }
 
 //-----------------------------------------------------------------
-class ActivationStatus extends Component<{}> {
+// class ActivationStatus extends Component<{}> {
 
-render(){
-  return(
-    <View>
-      <Text>Hello world</Text>
-    </View>
-  );
-}
-}
+// render(){
+//   return(
+//     <View>
+//       <Text>Hello world</Text>
+//     </View>
+//   );
+// }
+// }
 
-class RecentChatsScreen extends React.Component {
+class RejectedScreen extends Component {
+
+
+
+
+  renderRow(){
+    var rows = [];
+    for (var i=0; i < rejList.length; i++) {
+        rows.push(
+          <View key={i} style={styles.listVView_row} >
+          <View style={styles.listView_col1}>
+            {rejList[i].icon}
+          </View>
+          <View style={styles.listView_col2}>
+            <Text style={styles.rowText}>{rejList[i].num}</Text>
+          </View>
+          <View style={styles.listView_col3}>
+            <Text style={styles.rowText}>{rejList[i].issue}</Text>
+          </View>
+          <View style={styles.listView_col4}>
+            <Text style={styles.rowText}>{rejList[i].date}</Text>
+          </View>
+          <View style={styles.listView_col5}>
+            <Text style={styles.rowText}>{rejList[i].date}</Text>
+            <Text style={styles.rowText}>{rejList[i].time}</Text>
+          </View>
+          <View key={i} style={styles.listView_col6} >
+          {forwardIcon} 
+          </View> 
+      </View>
+        );
+    }
+    return rows;
+  } 
   render() {
-    return <Text>List of recent chats</Text>
+    const { navigate } = this.props.navigation;
+    return (
+<View style={styles.listView_wholePage}>
+        {this.renderRow()}
+        </View>
+    )
+  }
+  _onPressMore() {
+    Alert.alert("clicked");
+  }
+
+}
+//-----------------------------------------------------------
+class AllScreen extends Component {
+  renderRow(){
+    var rows = [];
+    for (var i=0; i < allList.length; i++) {
+        rows.push(
+          <View key={i} style={styles.listVView_row} >
+          <View style={styles.listView_col1}>
+            {allList[i].icon}
+          </View>
+          <View style={styles.listView_col2}>
+            <Text style={styles.rowText}>{allList[i].num}</Text>
+          </View>
+          <View style={styles.listView_col3}>
+            <Text style={styles.rowText}>{allList[i].issue}</Text>
+          </View>
+          <View style={styles.listView_col4}>
+            <Text style={styles.rowText}>{allList[i].date}</Text>
+          </View>
+          <View style={styles.listView_col5}>
+            <Text style={styles.rowText}>{allList[i].date}</Text>
+            <Text style={styles.rowText}>{allList[i].time}</Text>
+          </View>
+          <View key={i} style={styles.listView_col6} >
+          {forwardIcon} 
+          </View> 
+      </View>
+        );
+    }
+    return rows;
+  } 
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={styles.listView_wholePage}>
+      {this.renderRow()}
+      </View>
+       
+    )
+  }
+  _onPressMore() {
+    Alert.alert("clicked");
   }
 }
 
-class AllContactsScreen extends React.Component {
-  render() {
-    return <Text>List of all contacts</Text>
-  }
-}
+//-----------------------------------------------------------
+
 //-----------------------------------------------------------------
-export const MainScreenNavigator = TabNavigator({
-  REJECTED: { screen: RecentChatsScreen },
-  ALL: { screen: AllContactsScreen },
+const MainScreenNavigator = TabNavigator({
+  REJECTED: { screen: RejectedScreen },
+  ALL: { screen: AllScreen },
+
 });
+
 
 export const SimpleApp = StackNavigator({
   Home: { screen: SimChange },
   Astatus : { screen : MainScreenNavigator,
-    navigationOptions: {title: 'Activation Status',},
-  },
+  navigationOptions: {title: 'Activation Status',},
+},
 });
 
 
@@ -294,27 +502,27 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    flex:8,
-    justifyContent:'center',
-    alignContent:'center',
-    marginRight:5,
-    marginLeft:5,
+    flex: 8,
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginRight: 5,
+    marginLeft: 5,
 
     //backgroundColor:'#aaaaaa'
   },
   title: {
-    marginTop:20,
+    marginTop: 20,
     paddingBottom: 2,
     color: '#404d5b',
     fontSize: 20,
     fontWeight: 'bold',
     opacity: 0.8,
     textAlign: 'left',
-    
+
   },
   button: {
-    flex:1,
-    justifyContent:'center',
+    flex: 1,
+    justifyContent: 'center',
     marginBottom: 30,
     width: 260,
     alignItems: 'center',
@@ -324,27 +532,97 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20
   },
-  icon:{
-    flex:1,
-    justifyContent:'flex-start',
-    alignContent:'flex-end',
-    textAlign:'right',
-    marginRight:20,
-    paddingTop:12,
+  icon: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignContent: 'flex-end',
+    textAlign: 'right',
+    marginRight: 20,
+    paddingTop: 12,
 
   },
-  inputLabelStyle:{
-  fontSize:17,
-  color: '#000'
+  inputLabelStyle: {
+    fontSize: 17,
+    color: '#000'
   },
-  inputDiv:{
-    paddingRight:2,
+  inputDiv: {
+    paddingRight: 2,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+
+  },
+  listView_wholePage: {
     flex:1,
-    flexDirection:'column',
-    justifyContent:'space-between', 
-    alignContent:'center',
-    
+    flexDirection: 'column',
+  },
+  listVView_row: {
+    flex:50,
+    flexDirection: 'row',
+    maxHeight: 70,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+    backgroundColor: '#fff',
+  },
+  listView_col1: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom:20,
+    paddingTop:20,
+  },
+  listView_col2: {
+    flex: 3,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom:20,
+    paddingTop:20,
+  },
+  listView_col3: {
+    flex: 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom:20,
+    paddingTop:20,
+  },
+  listView_col4: {
+    flex: 3,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom:20,
+    paddingTop:20,
+  },
+  listView_col5: {
+    flex: 3,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom:20,
+    paddingTop:20,
+  },
+  listView_col6: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom:20,
+    paddingTop:20,
+    paddingRight:10,
+  },
+  rowText : {
+    flex:1,
+    flexDirection: 'column',
+    fontSize: 10,
+    color:'#000',
+    textAlign: 'center'
   }
+  
+
 });
 
 
