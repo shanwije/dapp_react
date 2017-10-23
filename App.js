@@ -24,6 +24,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Hoshi } from 'react-native-textinput-effects';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import SignatureCapture from 'react-native-signature-capture';
 
 
 import { StackNavigator } from 'react-navigation';
@@ -476,12 +477,24 @@ class AllScreen extends Component {
   }
 }
 
+class Signature extends Component{
+  render(){
+    return(
+  <View style={{flex:1, flexDirection:'row'}}>
+  <SignatureCapture style={{flex:1, flexDirection:'row'}} />
+  </View>
+      
+    );
+  }
+}
+
 //-----------------------------------------------------------
 
 //-----------------------------------------------------------------
 const MainScreenNavigator = TabNavigator({
   REJECTED: { screen: RejectedScreen },
   ALL: { screen: AllScreen },
+  SIGN_PAGE : {screen: Signature},
 
 });
 

@@ -11,6 +11,7 @@
     "react": "16.0.0-beta.5",
     "react-native": "0.49.3",
     "react-native-keyboard-aware-scroll-view": "^0.3.0",
+    "react-native-signature-capture": "^0.4.9",
     "react-native-step-indicator": "0.0.6",
     "react-native-textinput-effects": "^0.4.1",
     "react-native-vector-icons": "^4.4.2",
